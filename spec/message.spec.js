@@ -45,5 +45,5 @@ describe("Message class", () => {
 
             //Check if the Message Object's command property matches the testCommands array
             expect(message.commands).toEqual(testCommands);
-        });
+        })
 });
