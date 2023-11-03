@@ -1,6 +1,6 @@
-const Rover = require('../rover.js');
 const Message = require('../message.js');
 const Command = require('../command.js');
+
 
 // NOTE: If at any time, you want to focus on the output from a single test, feel free to comment out all the others.
 //       However, do NOT edit the grading tests for any reason and make sure to un-comment out your code to get the autograder to pass.
@@ -90,7 +90,9 @@ describe("Rover class", () => {
      //Change rover to LOW_POWER mode
     let message1 = new Message('Test Message', [new Command('MODE_CHANGE', 'LOW_POWER')]);
     rover.receiveMessage(message1);
-  })
+    //Check Response
+    expect(result.results[0].completed).toBe(false);
+  });
 
   // Test 13
   it('responds with the position for the move command', () => {

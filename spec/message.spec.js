@@ -6,39 +6,24 @@ const Command = require('../command.js');
 
 // Message class correctly creates a message object with the specified name and associated commands
 describe("Message class", () => {
-    it('Should create a message object with name and commands', () => {
+//Test 4    
+    it('Throws error if a name is NOT passed into the constructor as the first parameter', () => {
         //create an array of Command Objects
-        let commands = [new Command('MODE_CHANGE', 'LOW POWER'), new Command('STATUS_CHECK')];
+        expect(() => { new Message();}).toThrowError(new Error('Message type required.'));
 
-        //create a Message Object
-        let message = new Message('Test message with two commands', commands);
-
-        //check if message object has the correct name and commands
-        expect(message.name).toBe('Test message with two commands');
-        expect(message.commands).toEqual(commands);
     });
-
-        it('Should throw an error if the name is NOT passed into the constructor as the first parameter', () => {
-    //define a function that tries to create a message object without a name
-        let createMessageWithoutName = () => {
-            new Message();
-    };
-
-        //check if creating a Message without a name throws an error
-        expect(createMessageWithoutName).toThrowError("Message name must be a non-empty string");
-    });
-
+//Test 5
         it('Constructor sets name', () => {
             //define test name
-            let testName = 'Test Message Name';
+            //let testName = 'Test Message Name';
 
             //create a Message object with the specified name
-            let message = new Message(testName);
+            let message = new Message('Message');
 
             //check if the name property is set right
-            expect(message.name).toBe(testName);
+            expect(message.name).toBe('Message');
         });
-
+//Test 6
         it('Contains a commands array passed into the constructor as the 2nd argument', () => {
             //Create a Message Object with the testCommands array
             let message = new Message('Test message with two commands', testCommands);

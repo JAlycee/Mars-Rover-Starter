@@ -1,3 +1,5 @@
+// const Command = require('./command.js');
+
 class Command {
     constructor(commandType, value) {
       this.commandType = commandType;
