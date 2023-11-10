@@ -10,17 +10,13 @@ class Rover {
 // Methods for Message Commands and Rover's Status
 
 // It returns a response object with information about the message results.
-   receiveMessage(message) {
-      let results = [];
-      
-      for(let command of message.commands) {
-         results.push(this.processCommand(command));
-      }
-      return {
-         message: message.name,
-         results,
-      };
+receiveMessage(message) {
+   let results = [];
+   for (let command of message.commands) {
+      results.push(this.processCommand(command));
    }
+   return { message: message.name, results };
+}
  //Processes individual commands in a message.
    processCommand(command) {
       //Check the type of command
@@ -29,15 +25,17 @@ if (command.commandType === 'MODE_CHANGE') {
    this.mode = command.value;
    return { completed: true };
 }  else if (command.commandType === 'MOVE') {
-      //MOVE = does rover allow movement.
    if (this.mode === 'LOW_POWER') {
       //Rover can't move if it's in LOW_POWER
    return {completed: false };
-   } //Normal mode = update position
-   let [x, y] = command.value;
-   this.position = { x, y };
+   } 
+   //Normal mode = update position
+   let x = command.value;
+   this.position = x;
    return { completed: true };
-} else if (command.commandType === 'STATUS_CHECK') {
+      //MOVE = does rover allow movement.
+} 
+if (command.commandType === 'STATUS_CHECK') {
    //Status_Check command = get rover's status
    return { completed: true, roverStatus: this.getRoverStatus() };
 }
